@@ -38,7 +38,7 @@
                            name="search">
                 </div>
                 <div class="contacts">
-                    <div class="contact" v-for="contact in contacts">
+                    <div class="contact" v-for="(contact, index) in contacts" :key="index" @click="change_active_contact(index)">
                         <div class="contact-logo">
                             <img :src="'assets/img/avatar' + contact.avatar + '.jpg'" alt="contatto">
                         </div>
@@ -63,12 +63,10 @@
                                 Michele
                             </span>
                             <br>
-                            <small class="time"
-                            v-for=" (message, index) in contacts.messages "
-                            :src="messages"
-                            @click="changeImage(index)">
-                                Ultimo accesso oggi alle 12:00
-                            </small>
+                            <small class="time">                      
+                            Ultimo accesso oggi alle 12:00
+                        </small>
+
                         </h3>
                     </div>
                     <div class="header-right-icons">
@@ -80,7 +78,12 @@
 
                 <div class="right-messages-container">
                     <div class="right-messages">
-                        testo del messaggio
+                      <div v-for="message_object in contacts[currentChat].messages" class="message" :class="message_object.status">
+                        <span class="message-text">
+                          {{ message_object.message }}
+                        </span>
+                        <span class="message-time">12:00</span>
+                      </div>
                     </div>
                 </div>
 
