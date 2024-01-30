@@ -63,7 +63,10 @@
                                 Michele
                             </span>
                             <br>
-                            <small class="time">
+                            <small class="time"
+                            v-for=" (message, index) in contacts.messages "
+                            :src="messages"
+                            @click="changeImage(index)">
                                 Ultimo accesso oggi alle 12:00
                             </small>
                         </h3>
