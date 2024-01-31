@@ -78,7 +78,9 @@
 
                 <div class="right-messages-container">
                     <div class="right-messages">
-                      <div v-for="message_object in contacts[currentChat].messages" class="message" :class="message_object.status">
+                      <div 
+                      v-for="message_object in contacts[currentChat].messages" 
+                      class="message" :class="message_object.status">
                         <span class="message-text">
                           {{ message_object.message }}
                         </span>
@@ -91,7 +93,7 @@
                     <div class="right-footer-icon f-left">
                         <i class="far fa-smile"></i>
                     </div>
-                    <input class="new-message-inputs" placeholder="Scrivi un messaggio">
+                    <input v-model="new_message" @keyup.enter="send_message" class="new-message-inputs" placeholder="Scrivi un messaggio">
                     <div class="right-footer-icon f-right">
                         <i class="fa fa-microphone" aria-hidden="true"></i>
                     </div>

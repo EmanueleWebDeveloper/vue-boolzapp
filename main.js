@@ -2,6 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
         currentChat: 0,
+        new_message: '',
         user: {
             name: 'Emanuele',
             avatar: '_io'
@@ -173,6 +174,22 @@ var app = new Vue({
     methods: {
         change_active_contact(contact_index) {
             this.currentChat = contact_index;
-        }
+        },
+        send_message() {
+            let new_message_object = {
+                date: '17/11/2020 09:57',
+                message: this.new_message,
+                status: 'sent'
+            };
+            
+            let current_chat = this.contacts[this.currentChat].messages; 
+            current_chat.push(new_message_object);
+            
+            this.new_message = '';
+
+        },
+        
     },
+    
 });
+    
