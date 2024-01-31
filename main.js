@@ -176,20 +176,47 @@ var app = new Vue({
             this.currentChat = contact_index;
         },
         send_message() {
+            // recupero il testo digitato e creo un nuovo messaggio, cioè un oggetto
             let new_message_object = {
                 date: '17/11/2020 09:57',
                 message: this.new_message,
                 status: 'sent'
             };
-            
-            let current_chat = this.contacts[this.currentChat].messages; 
+            // recupero l'array dei messaggi della conversazione corrente
+            let current_chat = this.contacts[this.currentChat].messages; // Modificato qui
+            // inserisco l'oggetto nell'array dei messaggi della conversazione corrente
             current_chat.push(new_message_object);
-            
+            // resetto l'input
             this.new_message = '';
 
+            this.autoscroll();
+
+            // risposta del pc
+            setTimeout(() => {
+                
+                let pc_message = {
+                    date: '17/11/2020 09:57',
+                    message: 'ok',
+                    status: 'received'
+                };
+                // inserisco l'oggetto della risposta nell'array dei messaggi della conversazione corrente
+                current_chat.push(pc_message);
+
+                this.autoscroll();
+
+            }, 1000);
+
         },
-        
+        autoscroll() {
+            // faccio scroll della finestra dei messaggi
+            Vue.nextTick(() => {
+                let chat_container = document.getElementsByClassName('right-messages')[0];
+                chat_container.scrollTop = chat_container.scrollHeight;
+            });
+        }
     },
-    
+    mounted() {
+        this.autoscroll();
+    },
 });
     
