@@ -186,7 +186,7 @@ var app = new Vue({
             // recupero l'array dei messaggi della conversazione corrente
             let current_chat = this.contacts[this.currentChat].messages; // Modificato qui
             // inserisco l'oggetto nell'array dei messaggi della conversazione corrente
-            C.push(new_message_object);
+            current_chat.push(new_message_object);
             // resetto l'input
             this.new_message = '';
 

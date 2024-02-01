@@ -40,7 +40,8 @@
                            name="search">
                 </div>
                 <div class="contacts">
-                    <div class="contact" v-for="(contact, index) in contacts" 
+                    <div class="contact" 
+                    v-for="(contact, index) in contacts" 
                     v-if="contact.visible"
                     @click="change_active_contact(index)">
                         <div class="contact-logo">
@@ -49,7 +50,7 @@
                         <div class="contact-info">
                             <h3>
                                 <span class="contact-name">{{ contact.name }}</span>
-                                <span class="time f-right">{{ message_object.messages[message_object.messages.length - 1].date }}</span>
+                                <span class="time f-right">12</span>
                             </h3>
                             <small>Ultimo messaggio inviato</small>
                         </div>
