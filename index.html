@@ -34,11 +34,15 @@
                     <label class="search-label" for="search">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </label>
-                    <input id="contacts-filter" class="left-searchbar-input" placeholder="Cerca o inizia una nuova chat"
+                    <input id="contacts-filter" 
+                    @keyup="search" v-model="search_text"
+                    class="left-searchbar-input" placeholder="Cerca o inizia una nuova chat"
                            name="search">
                 </div>
                 <div class="contacts">
-                    <div class="contact" v-for="(contact, index) in contacts" :key="index" @click="change_active_contact(index)">
+                    <div class="contact" v-for="(contact, index) in contacts" 
+                    v-if="contact.visible"
+                    @click="change_active_contact(index)">
                         <div class="contact-logo">
                             <img :src="'assets/img/avatar' + contact.avatar + '.jpg'" alt="contatto">
                         </div>

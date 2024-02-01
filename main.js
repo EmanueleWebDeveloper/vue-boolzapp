@@ -3,6 +3,7 @@ var app = new Vue({
     data: {
         currentChat: 0,
         new_message: '',
+        search_text: '',
         user: {
             name: 'Emanuele',
             avatar: '_io'
@@ -213,9 +214,20 @@ var app = new Vue({
                 let chat_container = document.getElementsByClassName('right-messages')[0];
                 chat_container.scrollTop = chat_container.scrollHeight;
             });
-        }
+        },
+        search() {
+            this.contacts.forEach((contact) => {
+                let contact_name = contact.name.toLowerCase();
+                let searched_name = this.search_text.toLowerCase();
+                if(contact_name.includes(searched_name)) {
+                    contact.visible = true;
+                } else {
+                    contact.visible = false;
+                }
+            });
+        },
     },
-    mounted() {
+    mounted: function() {
         this.autoscroll();
     },
 });
